@@ -121,59 +121,59 @@ OSI 7 layer 란?
 
 -       왜 OSI 7 layer를 사용하나?
 
-n  Network 표준은 다양한 벤더의 개발과 지원을 가능하도록 한다.
+  -  Network 표준은 다양한 벤더의 개발과 지원을 가능하도록 한다.
 
-n  서로 다른 network H/W와 S/W간의 통신을 가능하게 한다.
+  -  서로 다른 network H/W와 S/W간의 통신을 가능하게 한다.
 
-n  한 계층에서의 변화가 다른 계층에 영향을 미치지 않도록 하여, 개발하기 더 쉽게 한다.
+  -  한 계층에서의 변화가 다른 계층에 영향을 미치지 않도록 하여, 개발하기 더 쉽게 한다.
 
-n  Network 통신을 더 작은 부분으로 나누어 이해하기 쉽고 개발하기 쉽도록 한다.
+  -  Network 통신을 더 작은 부분으로 나누어 이해하기 쉽고 개발하기 쉽도록 한다.
 
 -       upper layer의 각 기능과 사용되는 예
 
-n  응용계층
+  -  응용계층
 
-u  사용자의 응용 program 이 네트워크에 접근하는 창구 역할을 수행
+   -  사용자의 응용 program 이 네트워크에 접근하는 창구 역할을 수행
 
-u  Telnet, FTP
+   -  Telnet, FTP
 
-n  표현계층
+  -  표현계층
 
-u  데이터를 표현, 암호화하는 방식, 데이터 표현을 서로 가능하게 하는 표준인터페이스 제공
+   -  데이터를 표현, 암호화하는 방식, 데이터 표현을 서로 가능하게 하는 표준인터페이스 제공
 
-u  ASCII, EBCDIC, JPEG
+   -  ASCII, EBCDIC, JPEG
 
-n  세션계층
+  -  세션계층
 
-u  세션을 확립하여 데이터 흐름을 제공하고, 전송 방향을 결정
+   -  세션을 확립하여 데이터 흐름을 제공하고, 전송 방향을 결정
 
-u  Operation System(OS)
+   -  Operation System(OS)
 
 -       lower layer의 각 기능과 사용되는 예
 
-n  전송계층
+  -  전송계층
 
-u  에러 검출, 흐름제어, 사용자간에 연결을 확립하고 유지
+   -  에러 검출, 흐름제어, 사용자간에 연결을 확립하고 유지
 
-u  TCP, UDP, SPX
+   -  TCP, UDP, SPX
 
-n  네트워크계층
+  -  네트워크계층
 
-u  논리적 주소로 최적의 라우팅 경로를 통해 데이터를 전송
+   -  논리적 주소로 최적의 라우팅 경로를 통해 데이터를 전송
 
-u  IP, IPX
+   -  IP, IPX
 
-n  데이터링크계층
+  -  데이터링크계층
 
-u  MAC address 를 사용해서 장비에 접속, 오류 검출 및 복원, 시작과 끝 인지
+   -  MAC address 를 사용해서 장비에 접속, 오류 검출 및 복원, 시작과 끝 인지
 
-u  HDLC, 802.2, 802.3
+   -  HDLC, 802.2, 802.3
 
-n  물리계층
+  -  물리계층
 
-u  전송 매체를 통하여 어떤 전기적 신호로 전송할 것인지 결정
+   -  전송 매체를 통하여 어떤 전기적 신호로 전송할 것인지 결정
 
-u  EIA/TIA-232. V.35
+   -  EIA/TIA-232. V.35
 
 암호화(Encapsulation)는 무엇인고 왜 사용할까?
 
@@ -199,15 +199,15 @@ Repeater와 Hub 의 장단점
 
 -       장점
 
-n  장비의 bandwidth 를 각 포트별로 나누어서 사용한다.
+  -  장비의 bandwidth 를 각 포트별로 나누어서 사용한다.
 
-n  가격이 저렴하다
+  -  가격이 저렴하다
 
-n  별도의 config 설정이 필요없다.
+  -  별도의 config 설정이 필요없다.
 
 -       단점
 
-n  컴퓨터가 늘어나서 hub로 계속 연결하면 collision domain이 늘어나서 통신이 불가할 수도 있다.
+  -  컴퓨터가 늘어나서 hub로 계속 연결하면 collision domain이 늘어나서 통신이 불가할 수도 있다.
 
 layer 2에 속하는 장비
 
@@ -217,13 +217,13 @@ layer 2에 속하는 장비
 
 -       switch 와 bridge의 특징
 
-n  collision domain 을 분리할 수 있다.
+  -  collision domain 을 분리할 수 있다.
 
-n  각각의 포트별로 연결된 컴퓨터가 독자적으로 스위치 속도에 따라 보장 가능
+  -  각각의 포트별로 연결된 컴퓨터가 독자적으로 스위치 속도에 따라 보장 가능
 
-n  broadcast 는 모든 segment 로 전송된다.
+  -  broadcast 는 모든 segment 로 전송된다.
 
-n  MAC address 기반으로 패킷을 전송
+  -  MAC address 기반으로 패킷을 전송
 
 Hub vs. Switching Hub
 
@@ -237,11 +237,11 @@ Layer 3에 속하는 장비
 
 -       Router는 네트워크와 네트워크 간의 경로(Route)를 설정하고 가장 빠른 길로 트래픽을 이끌어 주는 네트워크 장비이다.
 
-n  경로선택, 최적의 route로 패킷 스위칭 기능
+  -  경로선택, 최적의 route로 패킷 스위칭 기능
 
-n  logical 주소 사용(Network address)
+  -  logical 주소 사용(Network address)
 
-n  Broadcast domain 분리
+  -  Broadcast domain 분리
 
 -       스위치가 MAC address 를 기반으로 패킷을 전달하는 것처럼, 라우터는 Network address table에 해당하는 routing table 을 기반으로 패킷을 전달한다.
 
