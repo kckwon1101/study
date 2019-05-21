@@ -34,8 +34,7 @@ Network의 기본 구성
 
 -       Station(Terminal) : 컴퓨터, 팩스 등의 장비로 실제 운영하는 장비, 즉 Terminal 을 말한다.
 
-
-[[[그림1]]]
+![Alt text](https://github.com/kckwon1101/study/blob/master/picture/network/net1.jpg)
 
 
 Host 간의 통신방식
@@ -202,7 +201,7 @@ u  EIA/TIA-232. V.35
 
 -       상위 레이어의 데이터가 전송되기 위해서 하위의 각 레이어에서 이해할 수 있는 헤더(header)라는 정보를 붙여서 아래 레이어로 전달하게 된다. 
 
-
+![Alt text](https://github.com/kckwon1101/study/blob/master/picture/network/net2.jpg)
 
 
 -       암호풀기(De-encapsulating)은 encapsulation의 반대 개념으로 생각하면 된다.
@@ -211,7 +210,7 @@ Layer 1에 속하는 장비
 -       physical layer는 장치간의 물리적인 접속을 제어하기 위한 기능을 제공하는 계층으로, 데이터 부호화방식, 신호형식, 데이터 충돌 감지 등을 정의한다.
 
 -       이 계층에는 Repeater 와 Hub 장치가 있다.
-
+![Alt text](https://github.com/kckwon1101/study/blob/master/picture/network/net3.jpg)
 
 
 
@@ -250,7 +249,7 @@ n  MAC address 기반으로 패킷을 전송
 
 Hub vs. Switching Hub
 
-
+![Alt text](https://github.com/kckwon1101/study/blob/master/picture/network/net4.jpg)
 
 
 Layer 3에 속하는 장비
