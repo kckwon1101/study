@@ -1,1 +1,127 @@
+kubectl get nodes
+kubectl describe node gke-kubia-default-pool-1340aba3-zpv1
+kubectl run kubia --image=luksa/kubia --port=8080 --generator=run/v1
+kubectl get pods
+kubectl expose rc kubia --type=LoadBalancer --name kubia-http
+kubectl get services
+curl 34.85.69.168:8080
+kubectl get replicationcontrollers
+kubectl get rc
+kubectl get pods
+kubectl get pods -o wide
+kubectl describe pod kubia-5ps8b
+사이드카 컨테이너의 종류에는 로그 로테이션 및 수집 장치, 데이터 프로세서, 통신 어댑터 등
+kubectl get po kubia-5ps8b -o yaml
+포드 디스크립터에 포트를 명시적으로 정의하면 각 포트에 이름을 할당할 수도 있으므로 유용
+컨테이너화된 애플리케이션은 대게 로그를 파일에 쓰는 대신, 표준 출력과 표준 오류 스트림에 기록한다
+docker logs <container id>
+kubectl logs kubia-manual
+kubia-manual = <pod name>
+컨테이너 로그는 매일 로그 파일이 10MB 크기에 도달할 때마다 자동으로 교체된다. kubectl  logs 명령은 마지막 교체의 로그 항목만 표시한다.
+kubectl logs kubia-manual -c <container name> 도 가능 : 컨테이너의 로그
 
+
+ - 포드의 포트에 로컬 네트워크 포트 포워딩
+ kubectl port-forward <pod name> <local port>:<pod port>
+ 
+
+3.3 라벨을 이용한 포드 구성
+  3.3.1 라벨 소개
+    라벨 : 리소스에 첨부하는 임의의 키/값 쌍
+ 
+  3.3.2 포드를 만들 때 라벨 지정하기
+   라벨 셀렉터를 사용해 리소스를 선택할 때 활용된다.(리소스를 다시 만들지 않고도 기존 라벨의 값 수정 가능)
+   디스크립션의 metadata.labes 아래에 작성
+   
+   kubectl get po --show-labels
+   kubectl get po -L <label name> : 특정 라벨만 보기(<label name> ,를 이용해 여러개 장석 가능)
+  
+  3.3.3 포드의 라벨 수정
+   라벨 추가 : kubectl label po <pod name> <key>=<value>
+   라벨 수정 : kubectl label po <pod name> <key>=<valeu> --overwrite
+  
+3.4 라벨셀렉터를 통한 하위 집합 나열하기
+ 1. 특정 키가 있는 라벨 포함(또는 포함하지 않음)
+ 2. 특정 키와 값이 있는 라벨을 포함
+ 3. 특정 키가 있집만 지정한 값과 다른 값이 있는 라벨을 포함
+ 
+  3.4.1 라벨 셀렉터를 사용한 포드 나열
+   kubectl get po -l <key>=<value>
+   kubectl get po -l <key>=<value>, <key>=<value> : 다중 조건
+   kubectl get po -l <pod name>
+   kubectl get po -l '!<pod name>' : bash 쉘이 느낌표를 인식하지 못하도록 pod name 사이에 따옴표 넣기
+   <key>!=<valeu>
+   <key> in (<pod name>, <pod name>)
+   <key> notin (<pod name>, <pod name>)
+
+
+3.5 포드 스케줄링 제약을 위한 라벨과 셀렉터의 사용
+ 라벨은 노드를 포함한 모든 쿠버네티스 객체에 붙일 수 있다.
+
+  3.5.1 라벨을 사용한 워커 노드 분류
+   kubectl label node <node name> <key>=<value> : 노드에 라벨 추가
+   
+  3.5.2 노드 지정을 위한 포드 스케줄링
+   디스크립션의 spec.nodeSelector 아래에 <key>: "<value>" 추가 ( *큰 따옴표는 왜 여기에만 들어가는가???)
+   > 포드를 만들면 스케줄러는 특정 라벨이 있는 노드 중에서 선택하여 생성
+   ( *노드가 오프라인인 경우 문제 발생 > 항상라벨 셀렉터를 통해 지정된 특정 기준을 충족하는 노드의 논리적인 그룹을 생각해야 한다.
+     지금은 그저 예제고 16장에서 자세히 다룬다.)
+
+
+3.6 포드에 주석 달기
+  3.6.1 객체의 주석 찾아보기
+   주석은 디스크립션의 metadata.annotations의 아래에 <key>: <value>
+   이 때, value에 JSON 데이터로 넣어도 되고 짧은 string도 가능. (256kb)
+  
+  3.6.2 주석 추가와 수정
+   주석 추가 : kubectl annotate pod <pod name> <key>:"<value>"
+
+
+3.7 그룹 리소스의 네임스페이스 사용하기
+  3.7.1 네임프세이스의 필요성
+    여러 네임스페이스를 사용하면 많은 구성 요소를 포함하는 복잡한 시스템을 더 작은 그룹으로 분할할 수 있다. 또한 멀티 테넌트 환경에서 리소스를
+   분리하고 리소스를 생산, 개발 및 QA 환경으로 또는 기타 필요한 방ㅅ힉으로 분할하는 데 사용할 수 있다. 리소스 이름은 네임스페이스 내에서만
+   고유해야 한다.
+    대부분의 리소스 유형은 네임스페이스지만 일부는 그렇지 않다. 그중 하나는 전역이며 단일 네임스페이스에 묶이지 않은 노드 리소스다. 클러스터
+   수준의 리소스는 4장에서...
+   
+  3.7.2 다른 네임스페이스와 네임스페이스의 포드
+   kubectl get ns
+   kubectl get namespace
+   kubectl get namespaces
+   
+   kubectl get --namespace <namespace name>
+   kubectl get -n <namespace name>
+  
+  3.7.3 네임스페이스 만들기
+   방법1.
+   디스크립터 kind: Namespace, metadata.name: <namespace name> 으로 설정 후
+   kubectl create -f filename.yaml
+   
+   방법2.
+   kubectl create namespace <namespace name>
+   
+  3.7.4 다른 네임스페이스의 객체 관리
+   kubectl 명령어에 --namespace(또는 -n) <namespace> 을 추가하여 특정 네임스페이스의 객체를 관리할 수 있다.
+  
+  3.7.5 네임스페이스가 제공하는 격리
+   다른 네임스페이스의 포드끼리 반드시 통신할 수 없는 것은 아니다. 네임스페이스가 네트워크 격리를 제공하는지 여부는 쿠버네티스와 함께 배포되는
+   네트워킹 솔루션에 따라 다르다. 솔루션이 격리를 제공하지 않는다면 포드 IP 주소를 통해 통신이 가능하다.
+   
+3.8 포드의 중지와 삭제
+  3.8.1 이름으로 포드 삭제
+   kubectl delete po <pod name>
+  
+  3.8.2 라벨 셀렉터로 포드 삭제
+   kubectl delete po -l <key>:<value>
+  
+  3.8.3 전체 네임스페이스를 삭제해 포드 삭제
+   kubectl delete ns <ns name>
+  
+  3.8.4 네임스페이스가 유지되는 동안 모든 포드 삭제
+   kubectl delete po --all
+  
+  3.8.5 네임스페이스의 (거의) 모든 리소스 삭제
+   kubectl delete all --all : 이때 all 은 모든 유형, --all 은 이름으로 지정하는 대신 모든 리소스 인스턴스를 삭제하도록 지정함
+  
+  
