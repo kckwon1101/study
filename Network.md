@@ -254,3 +254,5 @@ CSU와 DSU 장비란?
 -       DSU(Digital Service Unit) : ISDN 등 디지털전화망의 가입자선 전송에 있어 가입자 택내에 설치하는 디지털회선 종단장치를 말한다.
 
 -       CSU(Channel Service Unit) : T1 또는 E1트렁크를 수용할 수 있는 장비로서 각각의 트렁크를 받아서 속도에 맞게 나누어 분할하여 쓸 수 있는 장비이다. 여기서 channel 이란 한 개의 채널에 64kbps 또는 56kbps 의 전송속도를 갖는 것을 말한다. 
+
+출처 : http://chaggun.egloos.com/v/3401977
