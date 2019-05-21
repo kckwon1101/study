@@ -124,4 +124,6 @@ kubectl logs kubia-manual -c <container name> 도 가능 : 컨테이너의 로�
   3.8.5 네임스페이스의 (거의) 모든 리소스 삭제
    kubectl delete all --all : 이때 all 은 모든 유형, --all 은 이름으로 지정하는 대신 모든 리소스 인스턴스를 삭제하도록 지정함
   
-  
+
+# 4. 레플리케이션과 그 밖의 컨트롤러: 포드 배포 관리
+
