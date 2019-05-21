@@ -109,37 +109,15 @@ OSI 7 layer 란?
 
 -       통신망을 통한 상호접속에 필요한 제반 통신절차를 정희하고 이 가운데 비슷한 기능을 제공하는 모듈을 동일계층으로 분할하여 모두 7개층으로 분할한 것을 말한다.
 
-응용계층(application layer)
-
-7계층
-
-upper layer
-
-표현계층(presentation layer)
-
-6계층
-
-세션계층(session layer)
-
-5계층
-
-전송계층(transport layer)
-
-4계층
-
-lower layer
-
-네트워크계층(network layer)
-
-3계층
-
-데이터링크계층(data link layer)
-
-2계층
-
-물리계층(physical layer)
-
-1계층
+|계층이름|계층단계|레이어|
+|:----|:----:|:----:|
+|응용계층(application layer)|7계층|upper layer|
+|표현계층(presentation layer)|6계층|upper layer|
+|세션계층(session layer)|5계층|upper layer|
+|전송계층(transport layer)|4계층|lower layer|
+|네트워크계층(network layer)|3계층|lower layer|
+|데이터링크계층(data link layer)|2계층|lower layer|
+|물리계층(physical layer)|1계층|lower layer|
 
 -       왜 OSI 7 layer를 사용하나?
 
