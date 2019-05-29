@@ -24,13 +24,14 @@ Using the VMware VDC 파일 참조
 분석할 사이트의
 사이트 Domain Name : vclass.local
 인증 도메인 : administrator@vsphere.local(ID)
-ping으로 V
+ping으로 SA-ESXi-01.vclass.local 등 확인
 
 처음 원격에서 비번만 VMware1$
 나머지는 다 VMware1!
 
 --------------------
 ## Module 2
+### Lesson 1
 로그 정보는 비정형화 데이터(unstructed)
 정형화시키고
 검색될 수 있도록 분석하고 가시성 있도록 조정 > 이것이 log insight
@@ -61,5 +62,45 @@ storage > vSAN
 
 gui로만은 한계가 있고 Regex가 필수
 
+### Lesson 2
 
+29p 특징 :
+>로그 인사이트가 가상머신이기에 확장이 쉬움
+>vCenter 뿐 아니라 가상머신에 대해서도 로그 수집 가능
+>내부 머신러닝이 있음 (Intelligent grouping 기능)
+>내부 카산드라 DB사용
 
+설치 시 :
+>호환성 검사 - VMware Product Interoperability Matrixes 검색
+>사이즈 - Extra Small(only demo) 너무 작아/ Small / Medium / Large
+ standalone(single node)와 clustered로 설치 가능한데 clustered는 medium/large 사이즈만 가능
+ scale up - adding more resources / scale out - multiple virtual appliances(add node)
+ master/worker 노드는 크게 차이는 없다. 
+ 클라이언트에 ui를 제공하는 리더노드는 내부적으로 자동으로 이루어짐.(마스터나 워커 중에)
+ 내가 구성할 것은 클러스터 멤버들에게 시스템 이벤트를 골고르 분산시켜줄 로드밸런스
+ 클러스터는 기본적으로 3노드가 구성되어야 함
+ 4버전부터는 Internal Load Balancer만 지원 (external은 3버전까지)
+ Storage device : 2TB - 512GB
+ Total Storage Size : 4TB
+ Syslog connections : 750
+ Events per Second : 15,000
+ The maximum number of nodes in vR Log Insight cluster is 12: 1master, 11 worker node
+ geocluster is not supported
+ 
+ Log Insight 설치
+ .ova파일을 VMware vSphere Web Client에 Deploy
+ 관리자에게 Notify할 email
+ 시간 설정(공통 NTP서버 사용 권장)
+ 
+ Log Insight는 Log forwarders 기능을 가지고 있다.
+ > Forwarding to another vR Log Insight instance
+ > Cross-forwarding for redundancy
+ > Forwarding to other logging tools
+ 
+ ## Module 4
+ 관건 : 비정형화 데이터를 어떻게 정형화 시켜서 DB에 넣을 것인가
+ > 정규표현식
+ Static(Standard) Fields : 표준화된 필드, RFC 메다테이터에 포함된 데이터. ex) source, hostname, appname
+ > 이 필드는 read only 이다.
+ Smart Fields : vR Log Insight가 자동으로 생성한 필드. 수정이 가능하다. 정형화되지 않은 데이터를 스스로 정형화하려고 한다.(with 머신러닝) ex) time stamp
+ 
