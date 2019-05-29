@@ -1,5 +1,5 @@
 # vRealize Log Insight
-(*VMware vRealize Log Insight: Deploy and Manage 2019.05.29 강훈 강사님*)
+(*VMware vRealize Log Insight: Deploy and Manage 2019.05.29 강훈 강사님:010-3448-4254*)
 <hr/>
 
 **교육 전 준비**:
